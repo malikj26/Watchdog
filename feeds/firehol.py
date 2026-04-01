@@ -1,41 +1,53 @@
-import requests
 import ipaddress
+import requests
+from typing import List, Dict, Any
 
 FIREHOL_URL = "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset"
 
-def get_ips():
+
+def fetch_firehol() -> List[Dict[str, Any]]:
+    """
+    Fetch indicators from FireHOL and normalize them into a standard structure.
+
+    Returns:
+        A list of dictionaries, where each dictionary contains:
+        - value: original indicator string
+        - type: 'cidr' or 'ip'
+        - source: 'firehol'
+        - parsed: parsed ipaddress object
+    """
     try:
-        response = requests.get(FIREHOL_URL, timeout=10)
+        response = requests.get(FIREHOL_URL, timeout=30)
         response.raise_for_status()
-
-        networks = []
-
-        for line in response.text.splitlines():
-            line = line.strip()
-
-            if not line or line.startswith("#"):
-                continue
-
-            networks.append(ipaddress.ip_network(line))
-
-        return networks
-
     except requests.RequestException as e:
-        print(f"Error fetching FireHOL list: {e}")
+        print(f"Error fetching FireHOL data: {e}")
         return []
 
-def ip_in_blocklist(ip, networks):
-    ip_obj = ipaddress.ip_address(ip)
+    indicators = []
 
-    for network in networks:
-        if ip_obj in network:
-            return True
+    for line in response.text.splitlines():
+        line = line.strip()
 
-    return False
+        if not line or line.startswith("#"):
+            continue
 
-#firehol_networks = get_ips()
-#test_ip = "102.203.68.15"
-#if ip_in_blocklist(test_ip, firehol_networks):
-#    print("ALERT: IP found in FireHOL blocklist")
-#else:
-#    print("IP clean")
+        try:
+            if "/" in line:
+                parsed_value = ipaddress.ip_network(line, strict=False)
+                indicator_type = "cidr"
+            else:
+                parsed_value = ipaddress.ip_address(line)
+                indicator_type = "ip"
+
+            indicators.append({
+                "value": line,
+                "type": indicator_type,
+                "source": "firehol",
+                "parsed": parsed_value
+            })
+
+        except ValueError:
+            # Skip malformed entries
+            continue
+
+    return indicators
