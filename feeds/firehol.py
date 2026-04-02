@@ -50,10 +50,10 @@ def fetch_firehol() -> List[Dict[str, Any]]:
 
     return indicators
 
-
-if __name__ == "__main__":
-    data = fetch_firehol()
-    print(f"Total indicators fetched: {len(data)}")
-
-    for item in data[:10]:
-        print(item)
+#for testing run:
+#if __name__ == "__main__":
+#    data = fetch_firehol()
+#    print(f"Total indicators fetched: {len(data)}")
+#
+#    for item in data[:10]:
+#        print(item)
