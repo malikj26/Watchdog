@@ -29,8 +29,7 @@ def fetch_spamhaus() -> List[Dict[str, Any]]:
         try:
             response = requests.get(url, timeout=30)
             response.raise_for_status()
-        except requests.RequestException as e:
-            print(f"Error fetching {source_name}: {e}")
+        except requests.RequestException:
             continue
 
         for line in response.text.splitlines():
@@ -54,10 +53,10 @@ def fetch_spamhaus() -> List[Dict[str, Any]]:
 
     return indicators
 
-
-if __name__ == "__main__":
-    data = fetch_spamhaus()
-    print(f"Total indicators fetched: {len(data)}")
-
-    for item in data[:10]:
-        print(item)
+#for testing run:
+#if __name__ == "__main__":
+#    data = fetch_spamhaus()
+#    print(f"Total indicators fetched: {len(data)}")
+#
+#    for item in data[:10]:
+#        print(item)
