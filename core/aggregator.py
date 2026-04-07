@@ -8,10 +8,10 @@ from feeds.firehol import fetch_firehol
 from feeds.spamhaus import fetch_spamhaus
 
 
-CACHE_DIR = "data/cache"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CACHE_DIR = os.path.join(BASE_DIR, "data", "cache")
 CACHE_FILE = os.path.join(CACHE_DIR, "threat_feeds.json")
 CACHE_EXPIRATION_HOURS = 24
-
 
 logging.basicConfig(
     level=logging.INFO,
