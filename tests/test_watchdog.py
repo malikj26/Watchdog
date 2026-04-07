@@ -5,7 +5,7 @@ from watchdog import load_ips_from_csv
 
 def test_load_ips_from_csv_reads_valid_ips(tmp_path: Path):
     csv_file = tmp_path / "input_data.csv"
-    csv_file.write_text("ips\n8.8.8.8\n1.1.1.1\n", encoding="utf-8")
+    csv_file.write_text("ip_address\n8.8.8.8\n1.1.1.1\n", encoding="utf-8")
 
     ips = load_ips_from_csv(str(csv_file), column_name="ip_address")
 
@@ -14,7 +14,7 @@ def test_load_ips_from_csv_reads_valid_ips(tmp_path: Path):
 
 def test_load_ips_from_csv_skips_invalid_ips(tmp_path: Path):
     csv_file = tmp_path / "input_data.csv"
-    csv_file.write_text("ips\n8.8.8.8\nnot_an_ip\n1.1.1.1\n", encoding="utf-8")
+    csv_file.write_text("ip_address\n8.8.8.8\nnot_an_ip\n1.1.1.1\n", encoding="utf-8")
 
     ips = load_ips_from_csv(str(csv_file), column_name="ip_address")
 
