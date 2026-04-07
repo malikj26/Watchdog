@@ -2,7 +2,6 @@ import argparse
 import csv
 import json
 import ipaddress
-import os
 from typing import List
 
 from core.aggregator import gather_all_feeds
@@ -39,7 +38,6 @@ def load_ips_from_csv(file_path: str, column_name: str = "ip_address") -> List[s
     return ips
 
 
-import os
 
 def export_to_json(matches, filename: str = "matches.json") -> None:
     filepath = os.path.abspath(os.path.expanduser(filename))
