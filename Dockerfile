@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
-CMD ["python", "threat_compare.py"]
+ENTRYPOINT ["python", "watchdog.py"]
