@@ -9,7 +9,7 @@ from core.aggregator import gather_all_feeds
 from core.comparator import compare_ips
 
 
-def load_ips_from_csv(file_path: str, column_name: str = "ips") -> List[str]:
+def load_ips_from_csv(file_path: str, column_name: str = "ip_address") -> List[str]:
     ips = []
 
     try:
@@ -68,13 +68,13 @@ def parse_args():
     parser.add_argument(
         "--input",
         required=True,
-        help='Path to the input CSV file. CSV must include a column named "ips" by default.'
+        help='Path to the input CSV file. CSV must include a column named "ip_address" by default.'
     )
 
     parser.add_argument(
         "--column",
-        default="ips",
-        help='CSV column name containing IP addresses. Default: "ips"'
+        default="ip_address",
+        help='CSV column name containing IP addresses. Default: "ip_address"'
     )
 
     parser.add_argument(
