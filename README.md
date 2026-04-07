@@ -19,6 +19,12 @@ python threat_compare.py --input <insert input csv> --refresh
 Export to JSON
 python threat_compare.py --input <insert input csv> --output json 
 
+Export to JSON with custom filename
+python threat_compare.py --input <insert input csv> --output json --output-file <insert output filename>
+
+Export to CSV
+python threat_compare.py --input <insert input csv> --output csv
+
 Export to CSV with custom filename
 python threat_compare.py --input <insert input csv> --output csv --output-file <insert output filename>
 
