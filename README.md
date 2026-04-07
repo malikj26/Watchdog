@@ -22,4 +22,5 @@ python threat_compare.py --input <insert input csv> --output json
 Export to CSV with custom filename
 python threat_compare.py --input <insert input csv> --output csv --output-file <insert output filename>
 
+Using a column name other than ip_address
 python threat_compare.py --input <insert input csv> --column <insert column name>
