@@ -1,17 +1,51 @@
-# Watchdog
+# Watchdog 
 
-Watchdog is a threat intel ingestion and comparison tool that is dedicated to taking malicious IP data from multiple sources and comparing it to data from one internal IP database. It won't take internal action within an environment, but it can let you know whether there is a malicious IP interacting with your environment so you can take action to analyze or block it.
+Watchdog is a lightweight threat intelligence ingestion and comparison tool designed to identify malicious IP addresses interacting with your environment.
 
+It aggregates threat data from multiple reputable sources and compares it against your internal IP dataset, helping you quickly detect potentially malicious activity.
+
+> Watchdog is a detection tool — it does not take automated action. It is intended to support analysis and response workflows.
+
+## Features
+
+- Ingests threat intelligence from multiple sources (FireHOL, Spamhaus)
+- Compares external threat data against internal IP datasets
+- Supports CSV-based input
+- Export results to JSON or CSV
+- Built-in caching for faster repeated runs
+- Dockerized for easy portability
+- DevSecOps pipeline with:
+  - Linting (Ruff)
+  - Testing (pytest)
+  - SAST (Bandit)
+  - Dependency scanning (pip-audit)
+  - CodeQL integration
+
+---
+
+## Input Format
+
+Your CSV file should contain a column of IP addresses.
+
+### Default format:
+```csv
+ip_address
+8.8.8.8
+1.1.1.1
 
 # Docker setup
 
-Build Docker image
-Step 1: docker build -t watchdog.
+- Step 1: Build Docker image
 
-Run the Watchdog Docker image and mount the location of your data. 
+docker build -t watchdog .
+
+- Step 2: Run the Watchdog Docker image and mount the location of your data. 
 With it, you must add the --input argument pointing to your ip input csv
 
-Step 2: docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
+docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
+
+- Important Notice 1: The container cannot access your local files unless you mount them with -v
+- Important Notice 2: /data inside the container maps to your local folder
 
 The following arguments can be used to modify your analysis:
 Force refresh of feed data
