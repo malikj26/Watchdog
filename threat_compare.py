@@ -2,7 +2,6 @@ import csv
 import json
 import ipaddress
 import os
-import sys
 from typing import List
 from core.aggregator import gather_all_feeds
 from core.comparator import compare_ips

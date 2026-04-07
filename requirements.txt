@@ -1,7 +1,8 @@
+requests
 pandas==3.0.2
 requests==2.33.1
 pytest==9.0.2
 flake8==7.3.0
 bandit==1.9.4
 safety==3.7.0
-dotenv==1.2.2
+python-dotenv

@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+#Others
+input_data.csv
+config.py
+threat_feeds.json
+.DS_Store
