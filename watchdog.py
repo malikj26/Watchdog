@@ -39,10 +39,15 @@ def load_ips_from_csv(file_path: str, column_name: str = "ip_address") -> List[s
     return ips
 
 
+import os
+
 def export_to_json(matches, filename: str = "matches.json") -> None:
-    with open(filename, "w", encoding="utf-8") as f:
+    filepath = os.path.abspath(os.path.expanduser(filename))
+
+    with open(filepath, "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=4)
-    print(f"Results exported to {filename}")
+
+    print(f"Results exported to {filepath}")
 
 
 def export_to_csv(matches, filename: str = "matches.csv") -> None:
@@ -50,14 +55,15 @@ def export_to_csv(matches, filename: str = "matches.csv") -> None:
         print("No matches to export.")
         return
 
+    filepath = os.path.abspath(os.path.expanduser(filename))
     keys = matches[0].keys()
 
-    with open(filename, "w", newline="", encoding="utf-8") as f:
+    with open(filepath, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         writer.writerows(matches)
 
-    print(f"Results exported to {filename}")
+    print(f"Results exported to {filepath}")
 
 
 def parse_args():
@@ -101,11 +107,14 @@ def parse_args():
 def main():
     args = parse_args()
 
-    if not os.path.isfile(args.input):
-        print(f"Invalid file path: {args.input}")
+    input_path = os.path.abspath(os.path.expanduser(args.input))
+
+    if not os.path.isfile(input_path):
+        print(f"Invalid file path: {input_path}")
+        print("Tip: use an absolute path or ~/Downloads/your_file.csv")
         return
 
-    your_ips = load_ips_from_csv(args.input, column_name=args.column)
+    your_ips = load_ips_from_csv(input_path, column_name=args.column)
 
     if not your_ips:
         print("No valid IPs found in input file.")
