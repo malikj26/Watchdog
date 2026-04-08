@@ -61,7 +61,7 @@ ip_address
 ```
 
 
-# Docker setup
+# Running with Docker on linux/mac
 ```
 - Step 1: Build Docker image
 
@@ -71,11 +71,13 @@ docker build -t watchdog .
 With it, you must add the --input argument pointing to your ip input csv
 
 docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
+> To run test with the example_ips.csv file included in the repo:
+docker run --rm watchdog --input example_ips.csv
 
 > Important Notice 1: The container cannot access your local files unless you mount them with -v
 > Important Notice 2: /data inside the container maps to your local folder
 
-The following arguments can be used to modify your analysis:
+The following arguments can be appended to the command to modify your analysis:
 Force refresh of feed data
 --refresh
 
