@@ -2,14 +2,14 @@
 
 Watchdog is a lightweight threat intelligence ingestion and comparison tool designed to identify malicious IP addresses interacting with your environment.
 
-It aggregates threat data from multiple reputable sources and compares it against your internal IP dataset, helping you quickly detect potentially malicious activity.
+It aggregates threat data from multiple reputable sources and compares it against a provided IP dataset, helping you quickly detect potentially malicious activity.
 
 Watchdog is a detection tool — it does not take automated action. It is intended to support analysis and response workflows.
 
 
 ## Features
 
-- Ingests threat intelligence from multiple sources (FireHOL, Spamhaus)
+- Ingests threat intelligence from multiple sources (FireHOL, Spamhaus, more to come)
 - Compares external threat data against internal IP datasets
 - Supports CSV-based input
 - Export results to JSON or CSV
@@ -37,7 +37,7 @@ Make sure you have the following installed:
 
 ```
 git clone https://github.com/malikj26/Watchdog.git
-cd Watchdog
+Enter Watchdog directory
 ```
 
 ### Install dependencies
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 ## Create or download a CSV
 
-Your CSV file should contain a column of IP addresses.
+Your CSV file should contain a column of IP addresses that can be targeted for analysis.
 
 ### Default format in a CSV file:
 ```
