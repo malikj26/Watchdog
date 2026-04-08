@@ -33,7 +33,7 @@ Make sure you have the following installed:
 
 ## Installation
 
-### Clone the Repository (Recommended)
+### Clone the Repository or Download zip
 
 ```
 git clone https://github.com/malikj26/Watchdog.git
@@ -95,32 +95,29 @@ Insert name of column for IPs
 # Local Python Usage
 ```
 Run Watchdog and feed it data to compare to malicious IPs
-python watchdog.py --input (insert input csv)
-
-> To run test with the example_ips.csv file included in the repo:
-python watchdog.py --input example_ips.csv
+python threat_compare.py --input (insert input csv)
 
 Run Watchdog, feed it data to compare, and force refresh of feed data
-python watchdog.py --input (insert input csv) --refresh
+python threat_compare.py --input (insert input csv) --refresh
 
 Export to JSON
-python watchdog.py --input (insert input csv) --output json 
+python threat_compare.py --input (insert input csv) --output json 
 
 Export to JSON with custom filename
-python watchdog.py --input (insert input csv) --output json --output-file (insert output filename)
+python threat_compare.py --input (insert input csv) --output json --output-file (insert output filename)
 
 Export to CSV
-python watchdog.py --input (insert input csv) --output csv
+python threat_compare.py --input (insert input csv) --output csv
 
 Export to CSV with custom filename
-python watchdog.py --input (insert input csv) --output csv --output-file (insert output filename)
+python threat_compare.py --input (insert input csv) --output csv --output-file (insert output filename)
 
 Using a column name other than ip_address
-python watchdog.py --input (insert input csv) --column (insert column name)
+python threat_compare.py --input (insert input csv) --column (insert column name)
 ```
 
 
-# Running on Windows with Docker
+# Running on Windows
 ```
 docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
 
