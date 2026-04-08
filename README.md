@@ -33,15 +33,12 @@ Make sure you have the following installed:
 
 ## Installation
 
-### Clone the Repository or Download zip
+### Clone the repository and enter the watchdog directory
 
 ```
 git clone https://github.com/malikj26/Watchdog.git
-```
 
-Then enter the watchdog directory:
 
-```
 cd watchdog
 ```
 
@@ -59,11 +56,37 @@ pip install -r requirements.txt
 Your CSV file should contain a column of IP addresses that can be targeted for analysis.
 
 ### Default format in a CSV file:
-
 ```
 ip_address
 8.8.8.8
 1.1.1.1
+```
+
+# Local Python Usage
+```
+Run Watchdog and feed it data to compare to malicious IPs
+python watchdog.py --input (insert input csv)
+
+> To run test with the example_ips.csv file included in the repo:
+python watchdog.py --input example_ips.csv
+
+Run Watchdog, feed it data to compare, and force refresh of feed data
+python watchdog.py --input (insert input csv) --refresh
+
+Export to JSON
+python watchdog.py --input (insert input csv) --output json 
+
+Export to JSON with custom filename
+python watchdog.py --input (insert input csv) --output json --output-file (insert output filename)
+
+Export to CSV
+python watchdog.py --input (insert input csv) --output csv
+
+Export to CSV with custom filename
+python watchdog.py --input (insert input csv) --output csv --output-file (insert output filename)
+
+Using a column name other than ip_address
+python watchdog.py --input (insert input csv) --column (insert column name)
 ```
 
 # Running with Docker on linux/mac
@@ -76,6 +99,7 @@ docker build -t watchdog .
 With it, you must add the --input argument pointing to your ip input csv
 
 docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
+
 > To run test with the example_ips.csv file included in the repo:
 docker run --rm watchdog --input example_ips.csv
 
@@ -96,33 +120,7 @@ Insert name of column for IPs
 --column (insert name of column if it is not ip_address)
 ```
 
-
-# Local Python Usage
-```
-Run Watchdog and feed it data to compare to malicious IPs
-python threat_compare.py --input (insert input csv)
-
-Run Watchdog, feed it data to compare, and force refresh of feed data
-python threat_compare.py --input (insert input csv) --refresh
-
-Export to JSON
-python threat_compare.py --input (insert input csv) --output json 
-
-Export to JSON with custom filename
-python threat_compare.py --input (insert input csv) --output json --output-file (insert output filename)
-
-Export to CSV
-python threat_compare.py --input (insert input csv) --output csv
-
-Export to CSV with custom filename
-python threat_compare.py --input (insert input csv) --output csv --output-file (insert output filename)
-
-Using a column name other than ip_address
-python threat_compare.py --input (insert input csv) --column (insert column name)
-```
-
-
-# Running with Docker on Windows
+# Running on Windows with Docker
 ```
 docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
 
