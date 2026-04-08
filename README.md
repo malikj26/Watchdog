@@ -33,7 +33,7 @@ Make sure you have the following installed:
 
 ## Installation
 
-### Clone the Repository (Recommended)
+### Clone the Repository
 
 ```
 git clone https://github.com/malikj26/Watchdog.git
