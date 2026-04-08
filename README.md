@@ -61,7 +61,7 @@ ip_address
 ```
 
 
-# Docker setup
+# Running with Docker on linux/mac
 ```
 - Step 1: Build Docker image
 
@@ -71,11 +71,13 @@ docker build -t watchdog .
 With it, you must add the --input argument pointing to your ip input csv
 
 docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
+> To run test with the example_ips.csv file included in the repo:
+docker run --rm watchdog --input example_ips.csv
 
 > Important Notice 1: The container cannot access your local files unless you mount them with -v
 > Important Notice 2: /data inside the container maps to your local folder
 
-The following arguments can be used to modify your analysis:
+The following arguments can be appended to the command to modify your analysis:
 Force refresh of feed data
 --refresh
 
@@ -93,29 +95,32 @@ Insert name of column for IPs
 # Local Python Usage
 ```
 Run Watchdog and feed it data to compare to malicious IPs
-python threat_compare.py --input (insert input csv)
+python watchdog.py --input (insert input csv)
+
+> To run test with the example_ips.csv file included in the repo:
+python watchdog.py --input example_ips.csv
 
 Run Watchdog, feed it data to compare, and force refresh of feed data
-python threat_compare.py --input (insert input csv) --refresh
+python watchdog.py --input (insert input csv) --refresh
 
 Export to JSON
-python threat_compare.py --input (insert input csv) --output json 
+python watchdog.py --input (insert input csv) --output json 
 
 Export to JSON with custom filename
-python threat_compare.py --input (insert input csv) --output json --output-file (insert output filename)
+python watchdog.py --input (insert input csv) --output json --output-file (insert output filename)
 
 Export to CSV
-python threat_compare.py --input (insert input csv) --output csv
+python watchdog.py --input (insert input csv) --output csv
 
 Export to CSV with custom filename
-python threat_compare.py --input (insert input csv) --output csv --output-file (insert output filename)
+python watchdog.py --input (insert input csv) --output csv --output-file (insert output filename)
 
 Using a column name other than ip_address
-python threat_compare.py --input (insert input csv) --column (insert column name)
+python watchdog.py --input (insert input csv) --column (insert column name)
 ```
 
 
-# Running on Windows
+# Running on Windows with Docker
 ```
 docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
 
