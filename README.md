@@ -37,7 +37,12 @@ Make sure you have the following installed:
 
 ```
 git clone https://github.com/malikj26/Watchdog.git
-Enter Watchdog directory
+```
+
+Then enter the watchdog directory:
+
+```
+cd watchdog
 ```
 
 ### Install dependencies
@@ -54,12 +59,12 @@ pip install -r requirements.txt
 Your CSV file should contain a column of IP addresses that can be targeted for analysis.
 
 ### Default format in a CSV file:
+
 ```
 ip_address
 8.8.8.8
 1.1.1.1
 ```
-
 
 # Running with Docker on linux/mac
 ```
@@ -117,7 +122,7 @@ python threat_compare.py --input (insert input csv) --column (insert column name
 ```
 
 
-# Running on Windows
+# Running with Docker on Windows
 ```
 docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
 
