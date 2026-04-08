@@ -4,7 +4,8 @@ Watchdog is a lightweight threat intelligence ingestion and comparison tool desi
 
 It aggregates threat data from multiple reputable sources and compares it against your internal IP dataset, helping you quickly detect potentially malicious activity.
 
-> Watchdog is a detection tool — it does not take automated action. It is intended to support analysis and response workflows.
+Watchdog is a detection tool — it does not take automated action. It is intended to support analysis and response workflows.
+
 
 ## Features
 
@@ -21,20 +22,47 @@ It aggregates threat data from multiple reputable sources and compares it agains
   - Dependency scanning (pip-audit)
   - CodeQL integration
 
----
 
-## Input Format
+## Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.10+ (for local usage)
+- Docker (for containerized usage)
+
+
+## Installation
+
+### Clone the Repository (Recommended)
+
+```
+git clone https://github.com/malikj26/Watchdog.git
+cd Watchdog
+```
+
+### Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+###
+
+
+## Create or download a CSV
 
 Your CSV file should contain a column of IP addresses.
 
-### Default format:
-```csv
+### Default format in a CSV file:
+```
 ip_address
 8.8.8.8
 1.1.1.1
+```
+
 
 # Docker setup
-
+```
 - Step 1: Build Docker image
 
 docker build -t watchdog .
@@ -44,8 +72,8 @@ With it, you must add the --input argument pointing to your ip input csv
 
 docker run --rm -v ~/Downloads:/data watchdog --input /data/example_ips.csv
 
-- Important Notice 1: The container cannot access your local files unless you mount them with -v
-- Important Notice 2: /data inside the container maps to your local folder
+> Important Notice 1: The container cannot access your local files unless you mount them with -v
+> Important Notice 2: /data inside the container maps to your local folder
 
 The following arguments can be used to modify your analysis:
 Force refresh of feed data
@@ -59,10 +87,11 @@ Provide export file with name
 
 Insert name of column for IPs
 --column (insert name of column if it is not ip_address)
+```
 
 
 # Local Python Usage
-
+```
 Run Watchdog and feed it data to compare to malicious IPs
 python threat_compare.py --input (insert input csv)
 
@@ -83,6 +112,26 @@ python threat_compare.py --input (insert input csv) --output csv --output-file (
 
 Using a column name other than ip_address
 python threat_compare.py --input (insert input csv) --column (insert column name)
+```
+
 
 # Running on Windows
+```
 docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
+
+> Important Notice 1: The container cannot access your local files unless you mount them with -v
+> Important Notice 2: /data inside the container maps to your local folder
+
+The following arguments can be used to modify your analysis:
+Force refresh of feed data
+--refresh
+
+Export to JSON or CSV
+--output (JSON/CSV)
+
+Provide export file with name
+--output-file (insert output-file name)
+
+Insert name of column for IPs
+--column (insert name of column if it is not ip_address)
+```
