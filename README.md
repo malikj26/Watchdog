@@ -89,7 +89,7 @@ Using a column name other than ip_address
 python watchdog.py --input (insert input csv) --column (insert column name)
 ```
 
-# Running with Docker on linux/mac
+# Running with Docker
 ```
 - Step 1: Build Docker image
 
@@ -107,27 +107,6 @@ docker run --rm watchdog --input example_ips.csv
 > Important Notice 2: /data inside the container maps to your local folder
 
 The following arguments can be appended to the command to modify your analysis:
-Force refresh of feed data
---refresh
-
-Export to JSON or CSV
---output (JSON/CSV)
-
-Provide export file with name
---output-file (insert output-file name)
-
-Insert name of column for IPs
---column (insert name of column if it is not ip_address)
-```
-
-# Running on Windows with Docker
-```
-docker run --rm -v ${PWD}:/data watchdog --input /data/example_data.csv
-
-> Important Notice 1: The container cannot access your local files unless you mount them with -v
-> Important Notice 2: /data inside the container maps to your local folder
-
-The following arguments can be used to modify your analysis:
 Force refresh of feed data
 --refresh
 
